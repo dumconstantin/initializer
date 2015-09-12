@@ -1,0 +1,55 @@
+#/bin/bash
+
+BASE=$HOME/repos
+GIT_URL="git@github.com"
+GIT_USER="dumconstantin"
+REPOS=(
+	"$GIT_URL:$GIT_USER/dumconstantin.github.io.git"
+	"$GIT_URL:$GIT_USER/holisticjs.git"
+)
+
+createPaths() {
+	mkdir -p $BASE
+}
+
+# Clone repos in the specified folder
+cloneRepos() {
+	cd $1
+	for repo in "${REPOS[@]}"
+	do
+		git	clone $repo
+	done
+}
+
+# Run a command on all repositories using the dk bash file
+runDk() {
+	cd $BASE
+
+	for dir in */
+	do
+		cd $BASE/$dir
+		if [ -e dk ]; then
+			chmod 755 dk
+			./dk $1
+		fi
+		
+	done
+}
+
+run() {
+
+	# Create personal paths
+	createPaths
+	
+	# Clone the specified repos
+	cloneRepos $BASE
+
+	# build docker images
+	runDk build
+
+	# run docker containers in daemon mode
+	runDk run
+}
+
+# Invoke the given function
+$@
