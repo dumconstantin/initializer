@@ -1,0 +1,2 @@
+# initializer
+Setup my machine 
