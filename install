@@ -6,6 +6,7 @@ GIT_USER="dumconstantin"
 REPOS=(
 	"$GIT_URL:$GIT_USER/dumconstantin.github.io.git"
 	"$GIT_URL:$GIT_USER/holisticjs.git"
+	"$GIT_URL:$GIT_USER/initializer.git"
 )
 
 createPaths() {
