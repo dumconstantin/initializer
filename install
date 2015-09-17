@@ -39,8 +39,20 @@ runDk() {
 
 # Install dependencies
 installDependencies() {
+
 	sudo apt-get install -y \
-		npm
+		npm \
+		apg
+
+}
+
+# Configure the system according to the user
+configureSystem() {
+
+	# Set nmp personal settings
+	npm set init.author.name $AUTHOR_NAME
+	npm set init.author.email $AUTHOR_EMAIL
+	npm set init.url $AUTHOR_URL
 
 }
 
@@ -49,6 +61,9 @@ run() {
 
 	# Install dependencies
 	installDependencies
+
+	# Set personl settings
+	configureSystem
 
 	# Create personal paths
 	createPaths
