@@ -5,7 +5,7 @@ GIT_URL="git@github.com"
 GIT_USER="dumconstantin"
 REPOS=(
 	"$GIT_URL:$GIT_USER/dumconstantin.github.io.git"
-	"$GIT_URL:$GIT_USER/holisticjs.git"
+	"$GIT_URL:$GIT_USER/metio.git"
 	"$GIT_URL:$GIT_USER/initializer.git"
 )
 
@@ -37,7 +37,18 @@ runDk() {
 	done
 }
 
+# Install dependencies
+installDependencies() {
+	sudo apt-get install -y \
+		npm
+
+}
+
+# Run - the main function that runs in order all other functions
 run() {
+
+	# Install dependencies
+	installDependencies
 
 	# Create personal paths
 	createPaths
